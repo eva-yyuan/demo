@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>大风车</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="reset.css">
+    <style type="text/css">        
+        @-webkit-keyframes windwill {
+            0% {
+                transform: rotate(0deg);
+            }
+            50% {
+                transform: rotate(180deg);
+            }
+            100% {
+                transform: rotate(359deg);
+            }
+        }
+        @keyframes windwill {
+            0% {
+                transform: rotate(0deg);
+            }
+            50% {
+                transform: rotate(180deg);
+            }
+            100% {
+                transform: rotate(359deg);
+            }
+        }
+        
+        html, body {
+            width: 100%;
+            height: 100%;
+        }
+        body {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -moz-flex;
+            display: flex;
+            -webkit-flex-direction: row;
+            -ms-flex-direction: row;
+            flex-direction: row;
+            justify-content: center;
+            -webkit-justify-content: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-align-items: center;
+            background-color: #eee;
+        }
+        .content {
+            width: 500px;
+            height: 500px;
+            /*overflow: hidden;*/
+            position: relative;
+            /*background-image: url(img/timg.jpg);*/
+            background-position: center center;
+            background-size: 100% 100%;
+            -webkit-animation: windwill 5s 0s linear infinite;
+            animation: windwill 5s 0s linear infinite;
+        }
+        .content:after {
+            content: '';
+            width: 24px;
+            height: 24px;
+            position: absolute;
+            background-color: #eee;
+            top: 238px;
+            left: 238px;
+            border-radius: 50%;
+        }
+        .items {            
+            position: absolute;
+            top: 19px;
+            left: 218px;
+            height: 0px;
+            border-bottom: #dd4f43 120px solid;
+            border-left: 30px solid  #dd4f43;
+            border-right: 30px solid transparent;
+            border-top: 120px solid transparent;
+            border-radius: 45% 50%;
+            
+        }
+        .items:before {
+            content: '';
+            position: absolute;
+            width: 8px;
+            height: 180px;
+            top: -90px;
+            left: -4px;
+            transform: rotate(-14deg);
+            background-color: #eee;
+            border-radius: 50%;
+        }
+        .items:nth-child(2) {
+            transform: rotate(60deg);
+            transform-origin: 32px 231px;;
+        }
+        .items:nth-child(3) {
+            transform: rotate(120deg);
+            transform-origin: 32px 230px;
+        }
+        .items:nth-child(4) {
+            transform: rotate(180deg);
+            transform-origin: 31px 231px;
+        }
+        .items:nth-child(5) {
+            transform: rotate(240deg);
+            transform-origin: 32px 231px;
+        }
+        .items:nth-child(6) {
+            transform: rotate(300deg);
+            transform-origin: 31px 229px;
+        }
+        .last:before {
+            height: 163px;
+            top: -97px;
+            left: -6px;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="items"></div>
+        <div class="items"></div>
+        <div class="items"></div>
+        <div class="items"></div>
+        <div class="items"></div>
+        <div class="items last"></div>
+    </div>
+</body>
+</html>

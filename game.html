@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <style type="text/css">
+        html, body {
+            width: 100%;
+            height: 100%;
+        }
+        #element {
+            width: 10px;
+            height: 10px;
+            background-color: #f00;
+            border-radius: 50%;
+            position: absolute;
+            top: 500px;
+        }
+        #target {
+            position: absolute;
+            top: 700px;
+            left: 800px;
+        }
+    </style>
+</head>
+<body>
+    <div id="element"></div>
+    <div id="target"></div>
+    <script type="text/javascript">
+        var funParabola = function (element, target, options) {
+            var defautls = {
+                speed: 166.67,
+                curvature: 0.001,
+                complete: function() {},
+                progress: function() {}
+            };
+            var params = {};
+            options = options || {};
+            for(var key in defautls) {
+                params[key] = options[key] || defautls[key]; 
+            }
+            var a = params.curvature, b = 0, c = 0;
+            var flagMove = true;
+            var moveStyle = 'margin', testDiv = document.createElement('div');
+            if ('oninput' in testDiv) {
+                ['','webkit', 'ms'].forEach(function(prefix) {
+                    var transform = prefix + (prefix ? 'T' : 't') + 'ransform';
+                    if (transform in testDiv.style) {
+                        moveStyle = transform;
+                    }
+                })
+            }
+            var exports = {
+                move: function() {return this;},
+                init: function() {return this;}
+            };
+            if (element && target && element.nodeType == 1 && target.nodeType == 1) {
+                var rectElement = {}, rectTarget = {}, centerElement = {}, centerTarget = {}, coordElement = {}, coordTarget = {};
+                exports.init = function() {
+                    if (flagMove == false) {return this;};
+                    var scrollLeft = document.documentElement.scrollLeft || document.documentElement.scrollLeft;
+                    var scrollTop = document.documentElement.scrollTop || document.documentElement.scrollTop;                    
+                    if (moveStyle == 'margin') {
+                        element.style.marginLeft = element.style.marginTop = '0';
+                    } else {
+                        element.style[moveStyle] = 'translate(0, 0)';
+                    }
+                    rectElement = element.getBoundingClientRect();
+                    rectTarget = target.getBoundingClientRect();
+                    centerElement = {
+                        x: rectElement.left + (rectElement.right - rectElement.left) + scrollLeft,
+                        y: rectElement.top + (rectElement.bottom - rectElement.top) + scrollTop
+                    };
+                    centerTarget = {
+                        x: rectTarget.left + (rectTarget.right - rectTarget.left) + scrollLeft,
+                        y: rectTarget.top + (rectTarget.bottom - rectTarget.top) + scrollTop
+                    };
+                    coordElement = {
+                        x: 0, 
+                        y: 0
+                    };
+                    coordTarget = {
+                        x: centerTarget.x - centerElement.x,
+                        y: centerTarget.y - centerElement.y
+                    };
+
+                    b = (coordTarget.y - a * coordTarget.x * coordTarget.x) / coordTarget.x;
+                    element.setAttribute('data-center', [coordElement.x, coordElement.y].join());
+                    target.setAttribute('data-center', [coordTarget.x, coordTarget.y].join());
+                    return this;
+                }
+                exports.move = function() {
+                    if (flagMove == false) { return this; }
+                    var startx = 0, rate = coordTarget.x > 0 ? 1 : -1;
+                    var step = function() {
+                        var tangent = 2 * a * startx + b;
+                        startx = startx + rate * Math.sqrt(params.speed / (tangent * tangent + 1));
+                        if ((rate == 1 && startx > coordTarget.x) || (rate == -1 && startx < coordTarget.y)) {
+                            startx = coordTarget.x;
+                        }
+                        var x = startx, y = a * x * x  + b * x; 
+                        element.setAttribute('data-center', [Math.round(x), Math.round(y)].join());
+                        if (moveStyle == 'margin') {
+                            element.style.marginLeft = x + 'px';
+                            element.style.marginTop = y + 'px';
+                        } else {
+                            element.style[moveStyle] = 'translate(' + x + 'px, ' + y + 'px)';
+                        }
+                        if (startx !== coordTarget.x) {
+                            params.progress(x, y);
+                            window.requestAnimationFrame(step);
+                        } else {
+                            params.complete();
+                            flagMove = true;
+                        }
+                    }
+                    step();
+                    flagMove = false;          
+                    return this;
+                };          
+            }
+            return exports;
+        };
+        (function() {
+            var lastTime = 0;
+            var vendors = ['moz', 'webkit'];
+            for(var key =0; key < vendors.length && !window.requestAnimationFrame; ++key) {
+                window.requestAnimationFrame = window[vendors[key] + 'RequestAnimationFrame'];
+                window.cancelAnimationFrame = window[vendors[key] + 'CancelAnimationFrame'] || window[vendors[key] + 'CancelRequestAnimationFrame'];
+                console.log(key);
+            }
+            if (!window.requestAnimationFrame) {
+                window.requestAnimationFrame = function(callback, element) {
+                    var currTime = new Date().getTime();
+                    var timeToCall = Math.max(0, 16.7 - (currTime - lastTime));
+                    var id = window.setTimeout(function() {
+                        callback(currTime + timeToCall);
+                    }, timeToCall);
+                    lastTime = currTime + timeToCall;
+                    return id;
+                }
+            }
+            if (!window.cancelAnimationFrame) {
+                window.cancelAnimationFrame = function(id) {
+                    clearTiemout(id);
+                }
+            }
+        }());
+
+
+        var element = document.getElementById('element'), target = document.getElementById('target');
+        var parabola = funParabola(element, target);
+
+        document.body.onclick = function () {
+            element.style.marginLeft = '0';
+            element.style.marginTop = '0';
+            parabola.init().move();
+        }
+    </script>
+</body>
+</html>  
