@@ -7,6 +7,7 @@ function ajax(json) {
     json.type = json.type || 'GET';
     json.time = json.time || 3000;
     var timer = null;  //超时处理
+    clearTimeout(timer);
     var xml;
     if (window.XMLHttpRequest) {
         xml = window.XMLHttpRequest();
