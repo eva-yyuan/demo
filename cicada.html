@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>蝉原则</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="reset.css">
+    <style type="text/css">
+        html, body {
+            width: 100%;
+            height: 100%;
+            font-size: 18px;
+            font-family: 'Microsoft Yahei';
+            line-height: 1.4;
+        }
+        .content {
+            background-color: #2B3038;
+            background-size: cover;
+        }
+        .content ul {
+            display: -webkit-box;
+            display: -webkit-flexbox;
+            display: -moz-flexbox;
+            display: flex;
+            -ms-flex-wrap: wrap;
+            -webkit-flex-wrap: wrap;
+            flex-wrap: wrap;
+            width: 100%;    
+        }
+        .card-item {
+            width: 20%;
+            display: list-item;
+            text-align: center;
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+            padding: 1em;
+        }
+        .card-item .card-name {
+            color: #00c7e9;
+            text-transform: uppercase;
+            text-decoration: none;
+        }
+        .card-item .card-image {
+            width: 100%;
+            border: 4px #00c7e9 solid;
+            border-top-left-radius: 87%;
+            border-top-right-radius: 91%;
+            border-bottom-left-radius: 100%;
+            border-bottom-right-radius: 98%;
+            -webkit-transition: all 0.5s;
+            -moz-transition: all 0.5s;
+            transition: all 0.5s;            
+        }
+        .card-item .card-image:hover {        
+            border-top-left-radius: 95%;
+            border-top-right-radius: 70%;
+            border-bottom-left-radius: 80%;
+            border-bottom-right-radius: 100%;    
+            -webkit-transition: all 0.5s;
+            -moz-transition: all 0.5s;
+            transition: all 0.5s;            
+        }
+        .card-item:nth-child(2n + 1) .card-image {
+            border-top-left-radius:  59%;
+            border-top-right-radius: 52%;
+            border-bottom-left-radius: 59%;
+            border-bottom-right-radius: 56%;            
+            -webkit-transform: rotate(-5deg);
+            -moz-transform: rotate(-5deg);
+            transform: rotate(-5deg);
+        }
+        .card-item:nth-child(2n + 1) .card-image:hover {
+            border-top-left-radius:  51%;
+            border-top-right-radius: 67%;
+            border-bottom-left-radius: 64%;
+            border-bottom-right-radius: 56%;            
+            -webkit-transform: rotate(-2deg);
+            -moz-transform: rotate(-2deg);
+            transform: rotate(-2deg);    
+        }
+        .card-item:nth-child(3n + 2) .card-image {
+            border-top-left-radius:  84%;
+            border-top-right-radius: 94%;
+            border-bottom-left-radius: 72%;
+            border-bottom-right-radius: 83%;            
+            transform: rotate(5deg);
+        }
+        .card-item:nth-child(3n + 2) .card-image:hover {
+            border-top-left-radius:  69%;
+            border-top-right-radius: 64%;
+            border-bottom-left-radius: 70%;
+            border-bottom-right-radius: 53%;
+            transform: rotate(0deg);  
+        }
+        .card-item:nth-child(5n + 3) .card-image {
+            border-top-left-radius:  73%;
+            border-top-right-radius: 100%;
+            border-bottom-left-radius: 100%;
+            border-bottom-right-radius: 82%;            
+            transform: rotate(7deg);
+        }
+        .card-item:nth-child(5n + 3) .card-image:hover {
+            border-top-left-radius:  73%;
+            border-top-right-radius: 70%;
+            border-bottom-left-radius: 80%;
+            border-bottom-right-radius: 82%;
+            transform: rotate(3deg);
+        }
+        .card-item:nth-child(7n + 5) .card-image {
+            border-top-left-radius:  93%;
+            border-top-right-radius: 90%;
+            border-bottom-left-radius: 78%;
+            border-bottom-right-radius: 85%;            
+            transform: rotate(-2deg);
+        }
+        .card-item:nth-child(7n + 5) .card-image:hover {
+            border-top-left-radius:  53%;
+            border-top-right-radius: 70%;
+            border-bottom-left-radius: 68%;
+            border-bottom-right-radius: 85%;
+            transform: rotate(3deg); 
+        }
+        .card-item:nth-child(11n + 7) .card-image {
+            border-top-left-radius:  68%;
+            border-top-right-radius: 68%;
+            border-bottom-left-radius: 52%;
+            border-bottom-right-radius: 56%;            
+            transform: rotate(-5deg);
+        }
+        .card-item:nth-child(11n + 7) .card-image:hover {
+            border-top-left-radius:  58%;
+            border-top-right-radius: 98%;
+            border-bottom-left-radius: 83%;
+            border-bottom-right-radius: 78%;
+            transform: rotate(1deg);
+        }
+        @media screen and (max-width: 1000px) {
+            .card-item {
+                width: 25%;
+            }
+        }
+        @media screen and (max-width: 768px) {
+            .card-item {
+                width: 33.3%;
+            }
+        }
+    </style> 
+</head>
+<body>
+    <div class="content">
+        <ul>
+            <li class="card-item">
+                <a href="#" class="card-name">
+                    <img class="card-image" src="http://s3.amazonaws.com/uxlondon/2016/assets/speakers/AbbyHeadshot.jpg?mtime=20151126172712" alt="Abby Covert">
+                    Abby Covert
+                </a>
+                
+                <p class="Card-copy p-job-title">Information Architect</p>
+                
+            </li>
+            <li class="card-item">
+                <a href="#" class="card-name">
+                    <img class="card-image" src="http://s3.amazonaws.com/uxlondon/2016/assets/speakers/anna.jpg?mtime=20160212173823" alt="Anna Dahlström">
+                    Anna Dahlström
+                </a>
+                
+                <p class="Card-copy p-job-title">UX designer</p>
+                
+            </li>
+            <li class="card-item">
+                <a href="#" class="card-name">
+                    <img class="card-image" src="http://s3.amazonaws.com/uxlondon/2016/assets/speakers/ben.jpg?mtime=20160128142403" alt="Ben Sauer">
+                    Ben Sauer
+                </a>
+                
+                <p class="Card-copy p-job-title">Senior User Experience Designer at Clearleft</p>
+                
+            </li>
+            <li class="card-item">
+                <a href="#" class="card-name">
+                    <img class="card-image" src="http://s3.amazonaws.com/uxlondon/2016/assets/speakers/cennydd.jpeg?mtime=20151118150037" alt="Cennydd Bowles">
+                    Cennydd Bowles
+                </a>
+                
+                <p class="Card-copy p-job-title">Digital Product Designer</p>
+                
+            </li>
+            <li class="card-item">
+                <a href="#" class="card-name">
+                    <img class="card-image" src="http://s3.amazonaws.com/uxlondon/2016/assets/speakers/Christina_Wodtke.jpg?mtime=20151130172853" alt="Christina Wodtke">
+                    Christina Wodtke
+                </a>
+                
+                <p class="Card-copy p-job-title">Start-up coach and author of the forthcoming 'Radical Focus'</p>
+                
+            </li>
+            <li class="card-item">
+                <a href="#" class="card-name">
+                    <img class="card-image" src="http://s3.amazonaws.com/uxlondon/2016/assets/speakers/clara.jpg?mtime=20160224171641" alt="Clara Gaggero Westaway">
+                    Clara Gaggero Westaway
+                </a>
+                
+                <p class="Card-copy p-job-title">Co-founder and Creative Director, Special Projects</p>
+                
+            </li>
+            <li class="card-item">
+                <a href="#" class="card-name">
+                    <img class="card-image" src="http://s3.amazonaws.com/uxlondon/2016/assets/speakers/dan-klyn.jpeg?mtime=20151130173121" alt="Dan Klyn">
+                    Dan Klyn
+                </a>
+                
+                <p class="Card-copy p-job-title">Information Architect</p>
+                
+            </li>
+            <li class="card-item">
+                <a href="#" class="card-name">
+                    <img class="card-image" src="http://s3.amazonaws.com/uxlondon/2016/assets/speakers/david_travis.jpg?mtime=20160404172042" alt="David Travis">
+                    David Travis
+                </a>
+                
+                <p class="Card-copy p-job-title">UX Consultant</p>
+                
+            </li>
+            <li class="card-item">
+                <a href="#" class="card-name">
+                    <img class="card-image" src="http://s3.amazonaws.com/uxlondon/2016/assets/speakers/doug.jpg?mtime=20160118163943" alt="Doug Morwood">
+                    Doug Morwood
+                </a>
+                
+                <p class="Card-copy p-job-title">Partner at Business Models Inc</p>
+                
+            </li>
+            <li class="card-item">
+                <a href="#" class="card-name">
+                    <img class="card-image" src="http://s3.amazonaws.com/uxlondon/2016/assets/speakers/ellen.jpg?mtime=20160113173130" alt="Ellen de Vries">
+                    Ellen de Vries
+                </a>
+                
+                <p class="Card-copy p-job-title">Content Strategist at Clearleft</p>
+                
+            </li>
+            <li class="card-item">
+                <a href="#" class="card-name">
+                    <img class="card-image" src="http://s3.amazonaws.com/uxlondon/2016/assets/speakers/erika-hall.jpg?mtime=20151130171537" alt="Erika Hall">
+                    Erika Hall
+                </a>
+                
+                <p class="Card-copy p-job-title">Co founder of Mule Design and author of 'Just Enough Research'</p>
+                
+            </li>
+            <li class="card-item">
+                <a href="#" class="card-name">
+                    <img class="card-image" src="http://s3.amazonaws.com/uxlondon/2016/assets/speakers/eva-lotta.jpg?mtime=20160118163910" alt="Eva-Lotta Lamm">
+                    Eva-Lotta Lamm
+                </a>
+                
+                <p class="Card-copy p-job-title">User Experience Designer and Illustrator</p>
+                
+            </li>
+            <li class="card-item">
+                <a href="#" class="card-name">
+                    <img class="card-image" src="http://s3.amazonaws.com/uxlondon/2016/assets/speakers/glen.jpg?mtime=20160115115020" alt="Glen Keane">
+                    Glen Keane
+                </a>
+                
+                <p class="Card-copy p-job-title">Animator</p>
+                
+            </li>
+            <li class="card-item">
+                <a href="#" class="card-name">
+                    <img class="card-image" src="http://s3.amazonaws.com/uxlondon/2016/assets/speakers/headshot-Jim-Kalbach1.jpg?mtime=20151214173708" alt="Jim Kalbach">
+                    Jim Kalbach
+                </a>
+                
+                <p class="Card-copy p-job-title">Author of 'Designing Web Navigation' and 'Mapping Experiences'</p>
+                
+            </li>
+            <li class="card-item">
+                <a href="#" class="card-name">
+                    <img class="card-image" src="http://s3.amazonaws.com/uxlondon/2016/assets/speakers/jonathon.jpg?mtime=20160125164644" alt="Jonathon Colman">
+                    Jonathon Colman
+                </a>
+                
+                <p class="Card-copy p-job-title">Product UX &amp; Content Strategy at Facebook</p>
+                
+            </li>
+            <li class="card-item">
+                <a href="#" class="card-name">
+                    <img class="card-image" src="http://s3.amazonaws.com/uxlondon/2016/assets/speakers/kieron_leppard.jpg?mtime=20160404172132" alt="Kieron Leppard">
+                    Kieron Leppard
+                </a>
+                
+                <p class="Card-copy p-job-title">Creative Director, Experience Design at SapientNitro </p>
+                
+            </li>
+            <li class="card-item">
+                <a href="#" class="card-name">
+                    <img class="card-image" src="http://s3.amazonaws.com/uxlondon/2016/assets/speakers/leahbuley.jpg?mtime=20151118150233" alt="Leah Buley">
+                    Leah Buley
+                </a>
+                
+                <p class="Card-copy p-job-title">Analyst at Forrester Research</p>
+                
+            </li>
+            <li class="card-item">
+                <a href="#" class="card-name">
+                    <img class="card-image" src="http://s3.amazonaws.com/uxlondon/2016/assets/speakers/louise.jpg?mtime=20160120112134" alt="Louise Downe">
+                    Louise Downe
+                </a>
+                
+                <p class="Card-copy p-job-title">Head of Design for the UK Government, GDS</p>
+                
+            </li>
+            <li class="card-item">
+                <a href="#" class="card-name">
+                    <img class="card-image" src="http://s3.amazonaws.com/uxlondon/2016/assets/speakers/marc-rettig.jpg?mtime=20151130172413" alt="Marc Rettig">
+                    Marc Rettig
+                </a>
+                
+                <p class="Card-copy p-job-title">Managing Principal at Fit Associates</p>
+                
+            </li>
+            <li class="card-item">
+                <a href="#" class="card-name">
+                    <img class="card-image" src="http://s3.amazonaws.com/uxlondon/2016/assets/speakers/melissa.jpg?mtime=20160212173446" alt="Melissa Perri">
+                    Melissa Perri
+                </a>
+                
+                <p class="Card-copy p-job-title">Product Manager, UX Designer, CEO of ProdUX Labs</p>
+                
+            </li>
+            <li class="card-item">
+                <a href="#" class="card-name">
+                    <img class="card-image" src="http://s3.amazonaws.com/uxlondon/2016/assets/speakers/molly.jpg?mtime=20160212173358" alt="Molly Norris">
+                    Molly Norris
+                </a>
+                
+                <p class="Card-copy p-job-title">Product Designer at Pivotal Labs</p>
+                
+            </li>
+            <li class="card-item">
+                <a href="#" class="card-name">
+                    <img class="card-image" src="http://s3.amazonaws.com/uxlondon/2016/assets/speakers/nick.jpg?mtime=20160212173639" alt="Nick Finck">
+                    Nick Finck
+                </a>
+                
+                <p class="Card-copy p-job-title">Product Design Manager at Facebook</p>
+                
+            </li>
+            <li class="card-item">
+                <a href="#" class="card-name">
+                    <img class="card-image" src="http://s3.amazonaws.com/uxlondon/2016/assets/speakers/peterm.jpg?mtime=20151118150648" alt="Peter Merholz">
+                    Peter Merholz
+                </a>
+                
+                <p class="Card-copy p-job-title">&#8203;Experience Design &amp; Product Consultant, Co-founder of Adaptive Path</p>
+                
+            </li>
+            <li class="card-item">
+                <a href="#" class="card-name">
+                    <img class="card-image" src="http://s3.amazonaws.com/uxlondon/2016/assets/speakers/pete.jpg?mtime=20160212173324" alt="Peter Smart">
+                    Peter Smart
+                </a>
+                
+                <p class="Card-copy p-job-title">Director of UX and Strategy at Fantasy.co</p>
+                
+            </li>
+            <li class="card-item">
+                <a href="#" class="card-name">
+                    <img class="card-image" src="http://s3.amazonaws.com/uxlondon/2016/assets/speakers/rebecca.jpg?mtime=20160212173930" alt="Rebecca Ussai">
+                    Rebecca Ussai
+                </a>
+                
+                <p class="Card-copy p-job-title">Experience Design Director at R/GA</p>
+                
+            </li>
+            <li class="card-item">
+                <a href="#" class="card-name">
+                    <img class="card-image" src="http://s3.amazonaws.com/uxlondon/2016/assets/speakers/val.jpg?mtime=20160113173314" alt="Val Head">
+                    Val Head
+                </a>
+                
+                <p class="Card-copy p-job-title">Designer and Web Animation Consultant</p>
+                
+            </li>
+            <li class="card-item">
+                <a href="#" class="card-name">
+                    <img class="card-image" src="http://s3.amazonaws.com/uxlondon/2016/assets/speakers/victoria_ocallaghan.jpg?mtime=20160404172240" alt="Victoria O'Callaghan">
+                    Victoria O'Callaghan
+                </a>
+                
+                <p class="Card-copy p-job-title">Senior Associate, Strategy at SapientNitro</p>
+                
+            </li>
+        </ul>
+    </div>
+</body>
+</html>
